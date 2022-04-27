@@ -1,5 +1,18 @@
 import requests
 import json
+import argparse
+
+parser = argparse.ArgumentParser(description='Read messages from Discord')
+parser.add_argument('--channelid', dest='channelid', help='channelid') # 968749260067704856
+
+
+# Main function.
+def main ():
+
+    # Parse command-line arguments
+    args = parser.parse_args()
+    channelid = args.channelid
+    retrieve_messages('{}'.format(channelid))
 
 def retrieve_messages(channelid):
     headers = {
@@ -11,4 +24,9 @@ def retrieve_messages(channelid):
     for value in jsonn:
         print("{}: {} \n".format(value['author']['username'], value['content']))
 
-retrieve_messages('968749260067704856')
+
+
+# Main function call.
+if __name__ == '__main__':
+    main()
+    pass
